@@ -1,3 +1,5 @@
+# CRUD
+
 import sqlite3
 
 # Criando conexao
@@ -9,3 +11,46 @@ except sqlite3.Error as e:
 
 # TABELA DE CURSOS ------------------------------------
 
+# Criar cursos (CREATE)
+def criar_curso(i):
+    with con:
+        cur = con.cursor()
+        query = "INSERT INTO cursos ( nome, duracoa, preco) VALUES(?,?,?)"
+        cur.execute(query,i)
+
+#criar_curso(['Python','2 semanas', 500])
+
+# Ver todos os cursos (READE)
+def ver_cursos():
+
+    lista = []      # Lista para os itens 
+    with con:
+        cur = con.cursor()
+        cur.execute('SELECT * FROM cursos')
+        linha = cur.fetchall()
+
+        for i in linha:
+            lista.append(i)
+        return lista
+    
+print(ver_cursos())
+
+# Atualizar cursos (UPDATE)
+def atualizaar_curso(i):
+    with con:
+        cur = con.cursor()
+        query = "UPDATE cursos SET nome=?, duracoa=?, preco=? WHERE id=?"
+        cur.execute(query,i)
+
+l = ['Python','4 semanas', 400.00,1]
+atualizaar_curso(l)
+
+
+# Deletar os cursos (DELETE)
+def deletar_curso(i):
+    with con:
+        cur = con.cursor()
+        query = "DELETE FROM cursos WHERE id=?"
+        cur.execute(query,i)
+
+deletar_curso([1])
