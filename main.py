@@ -54,5 +54,7 @@ app_lp = Image.open('logo.png')
 app_lp = app_lp.resize((50,50))
 app_lp = ImageTk.PhotoImage(app_lp)
 app_logo =Label(frame_logo, image=app_lp, text="Cadastro de Alunos", width=850, compound=LEFT, relief=RAISED, anchor=NW, font=('Ivy 15 bold'), bg=co6, fg=co1)
+app_logo.place(x=0, y=0)
+
 # Executando a janela
 janela.mainloop()
